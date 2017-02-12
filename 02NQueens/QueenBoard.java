@@ -25,7 +25,7 @@ public class QueenBoard{
      *final configuration of the board after adding 
      *all n queens. Uses solveH
      */
-    public boolean solve()
+    public void solve()
     {
 	return solveH(0);
     }
@@ -34,6 +34,8 @@ public class QueenBoard{
 	if(numQueens == boardSize){    
 	    return true;
 	}
+
+	//u need another base case
 
 	for(int row = 0; row < board.length; row++){
 	    if(addQueen(row,col)){
@@ -101,6 +103,10 @@ public class QueenBoard{
 	else{
 	    return false;
 	}
+    }
+
+
+    public void countSolutions(){
     }
 
     /**
