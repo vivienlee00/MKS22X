@@ -45,8 +45,8 @@ public class QueenBoard{
 
     private boolean addQueen(int r, int c){
 	if(board[r][c] == 0){
-	board[r][c] = -1;
-	numQueens += 1;
+	    board[r][c] = -1;
+	    numQueens += 1;
 
 	for(int col = 0; col < board[r].length; col++){
 	    if (col != c){
