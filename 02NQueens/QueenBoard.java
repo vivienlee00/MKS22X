@@ -12,7 +12,7 @@ public class QueenBoard{
     public QueenBoard(int size){
 	board = new int[size][size];
 	boardSize = size;
-	solutionCount = 0;
+	solutionCount = -1;
 	numQueens = 0;
 	clearBoard();
     }
@@ -28,14 +28,13 @@ public class QueenBoard{
      */
     public void solve()
     {
-	this.solveH(0);
+	solveH(0);
     }
 
     private boolean solveH(int col){
 
 	
 	if(numQueens == boardSize){
-	    System.out.println(toString());
 	    return true;
 	}
 	
@@ -46,7 +45,9 @@ public class QueenBoard{
 
 	for(int row = 0; row < board.length; row++){
 	    if(addQueen(row,col)){
-		solveH(col+1);
+		if(solveH(col+1)){
+		    return true;
+		}
 		removeQueen(row,col);
 	    }
 	}
@@ -133,7 +134,32 @@ public class QueenBoard{
     }
 
 
+    private boolean countHelper(int col){
+		
+	if(numQueens == boardSize){
+	    solutionCount+=1;
+	    return true;
+	}
+	
+	
+	if(col >= board.length){
+	    return false;
+	}
+
+	for(int row = 0; row < board.length; row++){
+	    if(addQueen(row,col)){
+		countHelper(col+1);
+		removeQueen(row,col);
+	    }
+	}
+	
+	return false;
+
+    }
+    
     public void countSolutions(){
+	solutionCount = 0;
+	countHelper(0);
     }
 
     /**
@@ -144,14 +170,17 @@ public class QueenBoard{
      */
 
     public int getSolutionCount(){
-    	return -1;
+	clearBoard();
+    	return solutionCount;
     }
+
 
     /**toString
      *and all nunbers that represent queens are replaced with 'Q' 
      *all others are displayed as underscores '_'
      */
     public String toString(){
+
     	String str = "1 [";
 	
 	for (int i = 0; i < board.length; i++) {
@@ -187,9 +216,4 @@ public class QueenBoard{
 	}
     }
 
-    public static void main(String[] args){
-	QueenBoard J = new QueenBoard(4);
-	J.solve();
-	System.out.println(J);
-    }
 }
