@@ -52,7 +52,7 @@ public class KnightBoard{
 	    return true;
 	}
 	
-	return (
+	if (
 		solveH(row-2,col-1,level+1) ||
 		solveH(row-2,col+1,level+1) ||
 		solveH(row-1,col+2,level+1) ||
@@ -61,10 +61,25 @@ public class KnightBoard{
 		solveH(row+2,col-1,level+1) ||
 		solveH(row+1,col-2,level+1) ||
 		solveH(row-1,col-2,level+1)
-		);
+	    ){
+	    return true;
+	}
+	else{
+	    clearGreater(level);
+	    return false;
+	}
 	
     }
 
+    public void clearGreater(int level){
+	for(int row = 0; row < board.length; row++){
+	    for(int col = 0; col < board[0].length;col++){
+		if(board[row][col] == level){
+		    board[row][col] = 0;
+		}
+	    }
+	}
+    }
     
     public void clearBoard(){
 	for (int i = 0; i < board.length; i++) {
@@ -76,8 +91,9 @@ public class KnightBoard{
     }
 
     public static void main(String[] args){
-	KnightBoard j = new KnightBoard(4,4);
+	KnightBoard j = new KnightBoard(7,7);
 	j.solve();
+	System.out.println(j.solveH(0,0,1));
 	System.out.println(j.toString());
     }
 
