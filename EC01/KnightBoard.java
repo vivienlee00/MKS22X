@@ -1,5 +1,10 @@
 public class KnightBoard{
 
+
+    //mark squares with # of possible subsequent moves
+    //prioritize squares w/ more moves
+
+
     private int[][]board;
     private int boardArea;
 
