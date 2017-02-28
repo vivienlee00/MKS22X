@@ -22,6 +22,31 @@ public class Maze{
 
     public Maze(String filename){
         //COMPLETE CONSTRUCTOR
+	
+	try{
+	    File infile = new File(filename);
+	}
+	catch (FileNotFoundException e){
+	    System.out.println("No file");
+	    System.exit(1);
+	}
+	
+	Scanner inf = new Scanner(infile);
+	int lineNumber = 0;
+	while(inf.hasNextLine()){
+	    String line = inf.nextLine();
+
+	    int charNumber = 0;
+	    while(line.length() > 0){
+		maze[lineNumber][charNumber] = line.substring(0,1);
+		line = line.substring(1);
+		charNumber += 1;
+	    }
+	    lineNumber += 1;
+	}
+		
+
+	//also need to check that maze has E and S
     }
     
 
