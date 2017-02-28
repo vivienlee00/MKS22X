@@ -90,10 +90,5 @@ public class KnightBoard{
 	}
     }
 
-    public static void main(String[] args){
-	KnightBoard j = new KnightBoard(7,7);
-	j.solve();
-	System.out.println(j.toString());
-    }
-
+   
 }
