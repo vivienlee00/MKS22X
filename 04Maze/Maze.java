@@ -7,6 +7,7 @@ public class Maze{
     private char[][]maze;
     private boolean animate;
 
+
     /*Constructor loads a maze text file, and sets animate to false by default.
       1. The file contains a rectangular ascii maze, made with the following 4 characters:
       '#' - locations that cannot be moved onto
@@ -22,30 +23,9 @@ public class Maze{
 
     public Maze(String filename){
         //COMPLETE CONSTRUCTOR
-	
-	try{
-	    File infile = new File(filename);
-	}
-	catch (FileNotFoundException e){
-	    System.out.println("No file");
-	    System.exit(1);
-	}
-	
-	Scanner inf = new Scanner(infile);
-	int lineNumber = 0;
-	while(inf.hasNextLine()){
-	    String line = inf.nextLine();
-
-	    int charNumber = 0;
-	    while(line.length() > 0){
-		maze[lineNumber][charNumber] = line.substring(0,1);
-		line = line.substring(1);
-		charNumber += 1;
-	    }
-	    lineNumber += 1;
-	}
-		
-
+	animate = false;
+	maze = new char[findWidth(filename)][findLength(filename)];
+	loadFile(filename);
 	//also need to check that maze has E and S
     }
     
@@ -65,7 +45,64 @@ public class Maze{
 
     }
 
+    public int findWidth(String filename){
+	try{
+	    Scanner inf = new Scanner(new File(filename));
+	    int width = 0;
+	    if(inf.hasNextLine()){
+		String x = inf.nextLine();
+		width = x.length();
+	    }
+	    return width;
+	}
+	catch(FileNotFoundException e){
+	    System.out.println("file not found");
+	    System.exit(1);
+	}
+	return 0;
+    }
 
+    public int findLength(String filename){
+	try{
+	    Scanner inf = new Scanner(new File(filename));
+	    int length = 0;
+	    while(inf.hasNextLine()){
+		String line = inf.nextLine();
+		length += 1;
+	    }
+	    System.out.println(length);
+	    return length;
+	}
+	catch(FileNotFoundException e){
+	    System.out.println("file not found");
+	    System.exit(1);
+	}
+	return 0;
+    }
+
+    public void loadFile(String filename) {
+	try{
+	Scanner inf = new Scanner(new File(filename));
+
+	 int lineNumber = 0;
+	 while(inf.hasNextLine()){
+	     String line = inf.nextLine();
+	     
+	     int charNumber = 0;
+	     while(line.length() > 0){
+		maze[lineNumber][charNumber] = line.charAt(0);
+		line = line.substring(1);
+		charNumber += 1;
+	    }
+	     lineNumber += 1;
+	 }
+	}
+	catch(FileNotFoundException e){
+	    System.out.println("file not found");
+	    System.exit(1);
+	}
+    }
+    
     public void clearTerminal(){
 
         //erase terminal, go to top left of screen.
@@ -117,6 +154,29 @@ public class Maze{
     }
 
 
+
+     public String toString() {
+
+	 String str = "";
+	for (int i = 0; i < maze.length; i++) {
+
+	    for (int j = 0; j < maze[i].length; j++) {
+		str += maze[i][j];
+		str += " ";
+	    }
+
+	    str += "\n";
+	}
+
+	return str;
+    }
+
+
+
+    public static void main(String[] args){
+	Maze j = new Maze("data1.dat");
+	System.out.println(j.toString());
+    }
 }
 
 
