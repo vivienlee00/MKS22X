@@ -94,19 +94,184 @@ public class USACO{
     ////////////////////////////////////////////////////////////////////////
 
     public int silver(String filename){
-	return 0;
+
+	BufferedReader in = null;
+	try{
+	    in= new BufferedReader(new FileReader(filename));
+	}
+	catch(Exception e){System.out.println("Exception");}
+	
+	StringTokenizer st = null;
+		
+	int r, c, t;
+	try{st = new StringTokenizer(in.readLine());}
+	catch(Exception e) {}
+		
+	r = Integer.parseInt(st.nextToken());
+	c = Integer.parseInt(st.nextToken());
+	t = Integer.parseInt(st.nextToken());
+
+	int[][][] pasture = new int[r][c][2];
+	for(int row = 0; row<r; row++){
+
+	    try{
+		String str = in.readLine();
+		char[]chars = str.toCharArray();
+
+
+		for(int col = 0; col<c; col++){
+		    if (chars[col] == '.'){
+			pasture[row][col][0] = 0;
+		    }
+
+		    if (chars[col] == '*'){
+			pasture[row][col][0] = -1;
+		    }
+	
+		}
+	    }
+	    catch(Exception ex){}
+		
+	
+	}
+	
+
+	int startX, startY, endX, endY;
+	try{st = new StringTokenizer(in.readLine());}
+	catch(Exception e) {}
+		
+	startX = Integer.parseInt(st.nextToken()) - 1;
+	startY = Integer.parseInt(st.nextToken()) - 1;
+	endX = Integer.parseInt(st.nextToken()) - 1;
+	endY = Integer.parseInt(st.nextToken()) - 1;
+
+	firstMove(startX, startY, pasture);
+	addMoves(t, pasture);
+	//	System.out.println(toString(pasture));
+	return pasture[endX][endY][0];
+    }
+
+    public void firstMove(int x, int y, int[][][]pasture){
+
+	try{
+	    if(pasture[x-1][y][0] != -1){
+		pasture[x-1][y][0] = 1;
+	    }
+	}
+	catch(IndexOutOfBoundsException e){}
+
+	    
+	try{
+	    if(pasture[x+1][y][0] != -1){
+		pasture[x+1][y][0] = 1;
+	    }
+	}
+	catch(IndexOutOfBoundsException e){}
+
+
+	    	    
+	try{
+	    if(pasture[x][y+1][0] != -1){
+		pasture[x][y+1][0] = 1;
+	    }
+	}
+	catch(IndexOutOfBoundsException e){}
+
+
+	try{
+	    if(pasture[x][y-1][0] != -1){
+		pasture[x][y-1][0] = 1;
+	    }
+	}
+	catch(IndexOutOfBoundsException e){}
+
+	    
+    }
+
+    
+    public void addMoves(int steps, int[][][]pasture){
+
+	for(int step = 0; step<steps-1; step++){
+
+	    for(int r=0; r<pasture.length;r++){
+
+		for(int c =0; c<pasture[0].length; c++)
+		    {
+			pasture[r][c][1] = findNum(r,c,pasture);
+		    }
+
+
+	    }
+	    copyAry(pasture);
+	}
     }
 
 
-    ////////////////////////////////////////////////////////////////////////
+    public int findNum(int x, int y, int[][][]pasture){
+	int sum = 0;
 
-    public static void main(String[] args){
-	USACO x = new USACO(); //does not have to do anything. 
+	if(pasture[x][y][0] == -1){
+	    return -1;
+	}
 	
-	System.out.println(x.bronze("makelake.in"));
+	try{
+	    if(pasture[x][y-1][0] != -1){
+	        sum+=pasture[x][y-1][0];
+	    }
+	}
+	catch(IndexOutOfBoundsException e){}
+
+
+	try{
+	    if(pasture[x][y+1][0] != -1){
+	        sum+=pasture[x][y+1][0];
+	    }
+	}
+	catch(IndexOutOfBoundsException e){}
 	
-	System.out.println(x.bronze("makelake2.in"));
+
+	try{
+	    if(pasture[x-1][y][0] != -1){
+	        sum+=pasture[x-1][y][0];
+	    }
+	}
+	catch(IndexOutOfBoundsException e){}
+	
+
+	try{
+	    if(pasture[x+1][y][0] != -1){
+	        sum+=pasture[x+1][y][0];
+	    }
+	}
+	catch(IndexOutOfBoundsException e){}
+
+	return sum;
+	
     }
 
+    public void copyAry(int[][][]pasture){
+
+	for(int r=0; r<pasture.length;r++){
+	    for(int c = 0; c<pasture[0].length;c++){
+		pasture[r][c][0] = pasture[r][c][1];
+	    }
+	}
+
+    }
+
+    public String toString(int[][][]pasture){
+
+	String str = "";
+	
+	for(int r=0; r<pasture.length;r++){
+	    for(int c = 0; c<pasture[0].length;c++){
+		str += pasture[r][c][0];
+		str+= " | ";
+	    }
+	    str += '\n';
+	}
+	return str;
+    }
+ 
     ///////////////////////////////////////////////////////////////////////
 }
