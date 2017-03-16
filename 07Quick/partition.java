@@ -10,13 +10,12 @@ public class partition{
     public static int part(int[] data, int start, int end){
 
 	Random randgen = new Random();
-	//	int pivotIndex  = randgen.nextInt((end-start)+1);
-	int pivotIndex = 1;
+	int pivotIndex  = randgen.nextInt((end-start)+1);
 	int pivot = data[pivotIndex+start];
-	System.out.println(pivot);
-	System.out.println(toString(data));
 
-	//	int finalIndex = 0;
+	System.out.println("pivot" + pivot);
+
+       	int finalIndex = 0;
 
 	int left = start;
 	int right = end;
@@ -36,16 +35,23 @@ public class partition{
 	    if(right>left){
 		int temp = data[left];
 		data[left] = data[right];
-		data[right] = temp;
-		System.out.println(toString(data) + " - " + left + "," + right);
-		
+		data[right] = temp;			       
+
 		if(data[left] == data[right]){
-	       	right-=1;
+		    right-=1;
 		}
-	        }
+
+		if(left == pivotIndex){
+		    finalIndex = right;
+		}
+
+		if(right == pivotIndex){
+		    finalIndex = left;
+		}
+	    }
 	}
-	
-	return 0;
+	//FIX THIS!!!!!!!!!!!!!
+	return finalIndex;
     }
 
      public static String toString(int[] data) {
@@ -70,14 +76,14 @@ public class partition{
 
 	*/
 	
-	int[] ary4 = {3,3,2,1,3,3};
+	int[] ary4 = {0,0,0,1,2,3};
 
 	/*
 	part(ary,0,ary.length-1);
 	part(ary2,0,ary2.length-1);
 	part(ary3,0,ary3.length-1);
 	*/
-        part(ary4,0,ary4.length-1);
+        System.out.println(part(ary4,0,ary4.length-1));
 
 	/*
 	System.out.println(toString(ary));
