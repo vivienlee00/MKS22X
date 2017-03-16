@@ -11,7 +11,7 @@ public class partition{
 
 	Random randgen = new Random();
 	//	int pivotIndex  = randgen.nextInt((end-start)+1);
-	int pivotIndex = 4;
+	int pivotIndex = 6;
 	int pivot = data[pivotIndex+start];
 	System.out.println(pivot);
 	System.out.println(toString(data));
@@ -28,7 +28,7 @@ public class partition{
 		left += 1;
 	    }
 	
-	    while (data[right] >= pivot){
+	    while (data[right] > pivot){
 		right -= 1;
 	    }
 
@@ -38,10 +38,12 @@ public class partition{
 		data[left] = data[right];
 		data[right] = temp;
 		System.out.println(toString(data) + " - " + left + "," + right);
-
-		left+=1;
-		right-=1;
-	    }
+		
+		if(data[left] == data[right]){
+	      	left+=1;
+	       	right-=1;
+		}
+	        }
 	}
 	
 	return 0;
