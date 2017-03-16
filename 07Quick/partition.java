@@ -21,13 +21,7 @@ public class partition{
 	int left = start;
 	int right = end;
 
-	while((right-left)>=1){
-
-	    /*
-	    if(data[left] == data[right]){
-	
-	    }
-	    */
+	while(right>left){
 
 	    
 	    while (data[left] < pivot){
@@ -39,15 +33,14 @@ public class partition{
 	    }
 
 
+	    if(right>left){
+		int temp = data[left];
+		data[left] = data[right];
+		data[right] = temp;
+		System.out.println(toString(data) + " - " + left + "," + right);
 
-	    if((right-left)>=1){
-	    int temp = data[left];
-	    data[left] = data[right];
-	    data[right] = temp;
-	    System.out.println(toString(data) + " - " + left + "," + right);
-
-	    left+=1;
-	    right-=1;
+		left+=1;
+		right-=1;
 	    }
 	}
 	
