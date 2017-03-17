@@ -85,31 +85,4 @@ public class Quick{
     }
 
 
-    public static void main(String[] args){
-
-	/*
-	
-	int[] ary = {8,6,7,5,3,0};
-	int[] ary2 = {1,2,3,4,5,6};
-	int[] ary3 = {6,5,4,3,2,1};
-
-	*/
-	
-	int[] ary4 = {2,10,15,23,0,5};
-
-	/*
-	part(ary,0,ary.length-1);
-	part(ary2,0,ary2.length-1);
-	part(ary3,0,ary3.length-1);
-	
-        part(ary4,0,ary4.length-1;
-
-	
-	System.out.println(toString(ary));
-	System.out.println(toString(ary2));
-	System.out.println(toString(ary3));
-	*/
-	//  System.out.println(toString(ary4));
-	System.out.println(quickselect(ary4,2));
-    }
 }
