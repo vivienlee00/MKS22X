@@ -3,6 +3,23 @@ import java.util.*;
 
 public class Quick{
 
+
+    public static void quickSort(int[] data){
+	quickSortHelp(data, 0, data.length-1);
+    }
+
+    public static void quickSortHelp(int[] data, int start, int end){
+	int ans = part(data,start,end);
+
+	if(end-(ans+1) > 1){
+	quickSortHelp(data,ans+1,end);
+	}
+
+	if((ans-1) - start > 1){
+	quickSortHelp(data,start,ans-1);
+	}
+    }
+
     public static int quickselect(int[] data, int k){
 	return partHelp(data,k,0,data.length-1);
     }
@@ -64,10 +81,13 @@ public class Quick{
 
 		if(data[left] == data[right]){
 		    right-=1;
-		}
+		}		
 
 	    }
 	}
+
+	System.out.println("pivot =" + pivot + "  index=" + finalIndex);
+	System.out.println(toString(data) + '\n');
 	return finalIndex;
     }
 
@@ -85,4 +105,13 @@ public class Quick{
     }
 
 
+    public static void main(String[] args){
+
+	int[] ary2 = {1,1,5,3,3,3,5,1,1,1};
+	quickSort(ary2);
+	System.out.println(toString(ary2));
+
+    }
+
+    
 }
