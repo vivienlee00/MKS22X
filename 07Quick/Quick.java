@@ -49,9 +49,30 @@ public class Quick{
 
        	int finalIndex = pivotIndex;
 
-	int left = start;
-	int right = end;
+	int lt = start;
+	int et = start;
+	int gt = end;
 
+	while(et<=gt){
+	    if(data[et] < pivot){
+		finalIndex = trackIndex(lt, et, finalIndex);
+		swap(data, lt, et);
+		lt+= 1;
+		et+= 1;
+	    }
+	    else{
+		if(data[et]== pivot){
+		    et+=1;
+		}
+		else{
+		    finalIndex = trackIndex(gt, et, finalIndex);
+		    swap(data, gt, et);
+		    gt-=1;
+		}
+	    }
+	}
+
+	/*
 	while(right>left){
 
 	    
@@ -66,9 +87,7 @@ public class Quick{
 
 
 	    if(right>left){
-		int temp = data[left];
-		data[left] = data[right];
-		data[right] = temp;
+	        swap(data,left,right);
 
 		int tempIndex = finalIndex;
 		if(left == tempIndex){
@@ -89,8 +108,34 @@ public class Quick{
 	System.out.println("pivot =" + pivot + "  index=" + finalIndex);
 	System.out.println(toString(data) + '\n');
 	return finalIndex;
+	*/
+
+	return finalIndex;
     }
 
+    public static int trackIndex(int i1, int i2, int index){
+	int last = -1;
+	if (i1 == index){
+	    last = i2;
+	}
+	else{
+	    if(i2 == index){
+		last = i1;
+	    }
+	    else{
+		last = index;
+	    }
+	}
+	return last;
+    }
+
+    public static void swap(int[] ary, int i1, int i2){
+	int temp = ary[i1];
+	ary[i1]=ary[i2];
+	ary[i2]=temp;
+    }
+
+    
      public static String toString(int[] data) {
 	String str = "[";
 
@@ -102,15 +147,6 @@ public class Quick{
 	    str+="]";
 
 	return str;
-    }
-
-
-    public static void main(String[] args){
-
-	int[] ary2 = {1,1,5,3,3,3,5,1,1,1};
-	quickSort(ary2);
-	System.out.println(toString(ary2));
-
     }
 
     
