@@ -109,6 +109,7 @@ public class Quick{
 	System.out.println(toString(data) + '\n');
 	return finalIndex;
 	*/
+	System.out.println(toString(data) + '\n');
 
 	return finalIndex;
     }
@@ -149,5 +150,10 @@ public class Quick{
 	return str;
     }
 
-    
+    public static void main(String[] args){
+ 
+ 	int[] ary2 = {1,1,5,3,3,3,5,1,1,1,3,3,3,3,5,3,2,2,1,1,4,4,4,4};
+ 	System.out.println(quickselect(ary2,24));
+ 
+     }
 }
