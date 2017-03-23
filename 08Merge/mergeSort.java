@@ -15,7 +15,7 @@ public class Merge{
 	    left[l] = ary[l];
 	}
 	/////////////////
-	for(int r = 0; l < left.length; l++){
+	for(int r = left.length-1; l < right.length; l++){
 	    left[l] = ary[l];
 	}
     }
