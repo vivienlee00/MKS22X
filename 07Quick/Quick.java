@@ -11,11 +11,11 @@ public class Quick{
     public static void quickSortHelp(int[] data, int start, int end){
 	int ans = part(data,start,end);
 
-	if(end-(ans+1) > 1){
+	if(end-(ans+1) > 0){
 	quickSortHelp(data,ans+1,end);
 	}
 
-	if((ans-1) - start > 1){
+	if((ans-1) - start > 0){
 	quickSortHelp(data,start,ans-1);
 	}
     }
@@ -105,10 +105,10 @@ public class Quick{
 	    }
 	}
 
-	System.out.println("pivot =" + pivot + "  index=" + finalIndex);
-	System.out.println(toString(data) + '\n');
+
 	return finalIndex;
 	*/
+
 	return finalIndex;
     }
 
@@ -147,11 +147,4 @@ public class Quick{
 
 	return str;
     }
-
-    public static void main(String[] args){
-	// int[] ary2 = {0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3};
- 	int[] ary2 = {1,1,5,3,3,3,5,1,1,1,3,3,3,3,5,3,2,2,1,1,4,4,4,4};
- 	System.out.println(quickselect(ary2,7));
- 
-     }
 }
