@@ -1,7 +1,21 @@
 public class Merge{
 
+    /*
+      TEST CASES
+      array size: 1 million
+      -completely random
+      -random from 0-10
+      -all 0's
+      -sorted
+      -reverse sorted
+     */
 
-    public static int[] mergesort(int[]ary){
+    public static void mergesort(int[]ary){
+ 
+	if(ary.length <= 1){
+	    
+	}
+
 	if((ary.length % 2) == 0){
 	    int[]left = new int[ary.length/2];
 	    int[]right = new int[ary.length/2];
@@ -14,10 +28,13 @@ public class Merge{
 	for(int l = 0; l < left.length; l++){
 	    left[l] = ary[l];
 	}
-	/////////////////
-	for(int r = left.length-1; l < right.length; l++){
-	    left[l] = ary[l];
+
+	for(int r = 0; r < right.length; r++){
+	    left[r] = ary[r+(left.length)];
 	}
+
+	mergesort(left);
+	mergesort(right);
     }
 
 
