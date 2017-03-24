@@ -12,9 +12,6 @@ public class Merge{
 
     public static void mergesort(int[]ary){
  
-	if(ary.length <= 1){
-	    
-	}
 
 	if((ary.length % 2) == 0){
 	    int[]left = new int[ary.length/2];
@@ -33,10 +30,12 @@ public class Merge{
 	    left[r] = ary[r+(left.length)];
 	}
 
-	mergesort(left);
-	mergesort(right);
+	
+
     }
 
+    public static void mergeHelp(int[]ary){
+    }
 
     public static void merge(int[]a, int[]b,  int[]destination){
 	//assume a and b are sorted, destination.length == a.length + b.length
