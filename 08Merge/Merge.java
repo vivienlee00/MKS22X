@@ -40,16 +40,17 @@ public class Merge{
 	    right[r] = ary[r+(left.length)];
 	}
 
-	
-	System.out.println(toString(left));
-	System.out.println(toString(right)+ '\n');
-	
+		
 	mergesort(left);
 	mergesort(right);
 
 		
 	int[] dest = new int[left.length + right.length];
 	merge(left, right, dest);
+
+	for(int i = 0; i<ary.length; i++){
+	    ary[i] = dest[i];
+	}
     }
 
 
@@ -60,17 +61,43 @@ public class Merge{
 	int iB = 0;
 
 	for(int r = 0; r < destination.length; r++){
+
+
+	    
+	    // try{
 	    if(a[iA] <= b[iB]){
 		destination[r] = a[iA];
+
+		if((iA+1)<a.length){
 		iA+=1;
+		}
+		else{fill(b, iB, destination, r+1);
+		    break;}
 	    }
 	    else{
 		destination[r] = b[iB];
+		
+		if((iB+1)<b.length){
 		iB+=1;
+		}
+		else{fill(a, iA, destination, r+1);
+		    break;}
 	    }
+	    //}
+	//  catch(IndexOutOfBoundsException e){}
 	}
     }
 
+
+    public static void fill(int[]ary, int index, int[]dest, int ind2){
+	while(ind2 < dest.length){
+	    dest[ind2] = ary[index];
+	    ind2+=1;
+	    index+=1;
+	}
+    }
+
+    
      public static String toString(int[] data) {
   	String str = "[";
   
@@ -84,11 +111,6 @@ public class Merge{
   	return str;
       }
 
-    public static void main(String[] args){
-	int[] v = {5,4,3,2,1};
-	mergesort(v);
-	System.out.println(toString(v));
-    }
 
 
 }
