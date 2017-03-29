@@ -26,7 +26,7 @@ public class MyLinkedList{
 	//EDIT: adds node to the front
 	LNode x  =  new LNode(value, this.start);
 	start = x;
-	size += 1;
+	this.size += 1;
 	return true;
     }
 
@@ -65,8 +65,39 @@ public class MyLinkedList{
 	return ans;
     }
 
-    //indexOf; add(index, value); remove
+    //add(index, value); remove
     //exceptions
+
+    public void add(int index, int value){
+
+	LNode current = start;
+	LNode temp = start;
+	for(int i =0; i < index-1; i++){
+	    current = current.next;
+	    temp = (current.next).next;
+	}
+	LNode x = new LNode(value, temp);
+	System.out.println(x.next.value);
+	current.next = x;
+	this.size += 1;
+    }
+
+    //  public int remove(int index){
+    //    }
+
+    public int indexOf(int value){
+	LNode current = start;
+	int index = 0;
+	while(current.value != value){
+	    index+=1;
+	    if(index<this.size()-1){
+	    current = current.next;
+	    }
+	    else{index = -1;
+		break;}
+	}
+	return index;
+    }
 
     public static void main(String[] args){
 	MyLinkedList x = new MyLinkedList();
@@ -75,9 +106,8 @@ public class MyLinkedList{
 	x.add(5);
 	x.add(4);
 	x.add(3);
-	System.out.println(x + "  size=" +  x.size());
-	System.out.println(x.set(3,7));
-	System.out.println(x + "  size=" +  x.size());
-
+	System.out.println(x);
+	x.add(2,9);
+	System.out.println(x);
     }
 }
