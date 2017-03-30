@@ -50,11 +50,16 @@ public class MyLinkedList{
 	    x+=(current.value + ",");
 	    current = current.next;
 	}
-	//EDIT: x+= backspace char + "]"
+	x+= '8' + "]";
 	return x;
     }
 
     public int get(int index){
+
+	if(index > this.size() || index < 0){
+	    throw new IndexOutOfBoundsException();
+	}
+
 	int ans = 0;
 	LNode current = start;
 	for(int i = 0; i < index+1; i++){
@@ -65,6 +70,11 @@ public class MyLinkedList{
     }
 
     public int set(int index, int newValue){
+
+	if(index > this.size() || index < 0){
+	    throw new IndexOutOfBoundsException();
+	}
+
 	LNode current = start;
 	for(int i = 0; i < index; i++){
 	    current = current.next;
@@ -78,6 +88,10 @@ public class MyLinkedList{
 
     public void add(int index, int value){
 
+	if(index > this.size() || index < 0){
+	    throw new IndexOutOfBoundsException();
+	}
+
 	LNode current = start;
 	LNode temp = start;
 	for(int i =0; i < index-1; i++){
@@ -90,6 +104,11 @@ public class MyLinkedList{
     }
 
     public int remove(int index){
+
+	if(index > this.size() || index < 0){
+	    throw new IndexOutOfBoundsException();
+	}
+
 	LNode current = start;
 	LNode temp = start;
 	int val = 0;
@@ -130,9 +149,10 @@ public class MyLinkedList{
        	System.out.println(x);
 	x.remove(2);
        	System.out.println(x);
+	x.remove(6);
+
     }
 }
 
 //exceptions
-//edit: toString();
 
