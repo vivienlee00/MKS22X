@@ -23,9 +23,18 @@ public class MyLinkedList{
     }
 
     private boolean add(int value){
-	//EDIT: adds node to the front
-	LNode x  =  new LNode(value, this.start);
-	start = x;
+	if(size() == 0){
+	    LNode x = new LNode(value);
+	    start = x;
+	}
+	else{
+	    LNode current = start;
+	    while(current.next != null){
+		current = current.next;
+	    }
+	    LNode x  =  new LNode(value);
+	    current.next = x;
+	}
 	this.size += 1;
 	return true;
     }
@@ -65,25 +74,35 @@ public class MyLinkedList{
 	return ans;
     }
 
-    //add(index, value); remove
-    //exceptions
+
 
     public void add(int index, int value){
 
 	LNode current = start;
 	LNode temp = start;
 	for(int i =0; i < index-1; i++){
+	    temp = current.next.next;
 	    current = current.next;
-	    temp = (current.next).next;
 	}
 	LNode x = new LNode(value, temp);
-	System.out.println(x.next.value);
 	current.next = x;
 	this.size += 1;
     }
 
-    //  public int remove(int index){
-    //    }
+    public int remove(int index){
+	LNode current = start;
+	LNode temp = start;
+	int val = 0;
+	
+	for(int i = 0; i < index-1; i++){
+	    temp = current.next.next.next;
+	    val = temp.value;
+	    current = current.next;
+	}
+	current.next = temp;
+	this.size -= 1;
+	return val;
+    }
 
     public int indexOf(int value){
 	LNode current = start;
@@ -108,6 +127,12 @@ public class MyLinkedList{
 	x.add(3);
 	System.out.println(x);
 	x.add(2,9);
-	System.out.println(x);
+       	System.out.println(x);
+	x.remove(2);
+       	System.out.println(x);
     }
 }
+
+//exceptions
+//edit: toString();
+
