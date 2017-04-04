@@ -107,17 +107,27 @@ public class MyLinkedList{
 	    throw new IndexOutOfBoundsException();
 	}
 
-	LNode current = start;
-	LNode temp = start;
-	for(int i =0; i < index-1; i++){
-	    temp = current.next.next;
-	    current = current.next;
-	}
-	LNode x = new LNode(value, temp);
-	current.next = x;
-	x.previous = current;
-	temp.previous = x;
-	this.size += 1;
+	//	if(index == this.size()){
+	//	    add(value);
+	//	}
+	//	else{
+
+	    LNode current = start;
+	    LNode temp = start;
+	    for(int i =0; i < index-1; i++){
+		temp = current.next.next;
+		current = current.next;
+	    }
+	    LNode x = new LNode(value, temp);
+	    current.next = x;
+	    x.previous = current;
+	    temp.previous = x;
+	    this.size += 1;
+
+	    if(index == 0){
+		start = x;
+	    }
+	    //	}
     }
 
     public int remove(int index){
@@ -161,7 +171,7 @@ public class MyLinkedList{
 
     public static void main(String[] args){
 	MyLinkedList x = new MyLinkedList();
-	x.add(5);
+	x.add(0,5);
 	x.add(6);
 	x.add(5);
 	x.add(4);
