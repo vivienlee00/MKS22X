@@ -9,7 +9,7 @@ public class MyLinkedList{
     }
 
 
-    class LNode{
+    private class LNode{
 	private int value;
 	private LNode next = null;
 	private LNode previous = null;
@@ -21,6 +21,10 @@ public class MyLinkedList{
 	private LNode(int val, LNode nextNode){
 	    value = val;
 	    next = nextNode;
+	}
+
+	public String toString(){
+	    return value+"";
 	}
     }
 
@@ -82,6 +86,21 @@ public class MyLinkedList{
 	    current = current.next;
 	}
 	return ans;
+    }
+
+    public LNode getNthNode(int index){
+
+	if(index > this.size() || index < 0){
+	    throw new IndexOutOfBoundsException();
+	}
+
+	LNode temp = start;
+	LNode current = start;
+	for(int i = 0; i < index+1; i++){
+	    temp = current;
+	    current = current.next;
+	}
+	return temp;
     }
 
     public int set(int index, int newValue){
@@ -154,6 +173,8 @@ public class MyLinkedList{
 	this.size -= 1;
 	return val;
     }
+
+    //public void remove(LNode target)
 
     public int indexOf(int value){
 	LNode current = start;
