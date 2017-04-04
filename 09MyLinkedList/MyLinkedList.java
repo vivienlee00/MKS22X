@@ -1,5 +1,6 @@
 public class MyLinkedList{
     private LNode start;
+    private LNode tail;
     private int size;
 
     public MyLinkedList(){
@@ -11,6 +12,7 @@ public class MyLinkedList{
     class LNode{
 	private int value;
 	private LNode next = null;
+	private LNode previous = null;
 
 	private LNode(int val){
 	    value = val;
@@ -34,6 +36,8 @@ public class MyLinkedList{
 	    }
 	    LNode x  =  new LNode(value);
 	    current.next = x;
+	    x.previous = current;
+	    this.tail = x;
 	}
 	this.size += 1;
 	return true;
@@ -50,7 +54,18 @@ public class MyLinkedList{
 	    x+=(current.value + ",");
 	    current = current.next;
 	}
-	x+= '8' + "]";
+	x+= '\b' + "]";
+	return x;
+    }
+
+    public String toStringBackWards(){
+	String x = "[";
+	LNode current = tail;
+	while(current != null){
+	    x+=(current.value + ",");
+	    current = current.previous;
+	}
+	x+= '\b' + "]";
 	return x;
     }
 
@@ -100,6 +115,8 @@ public class MyLinkedList{
 	}
 	LNode x = new LNode(value, temp);
 	current.next = x;
+	x.previous = current;
+	temp.previous = x;
 	this.size += 1;
     }
 
@@ -107,6 +124,10 @@ public class MyLinkedList{
 
 	if(index > this.size() || index < 0){
 	    throw new IndexOutOfBoundsException();
+	}
+
+	if(index == this.size() - 1){
+	    tail = tail.previous;
 	}
 
 	LNode current = start;
@@ -119,6 +140,7 @@ public class MyLinkedList{
 	    current = current.next;
 	}
 	current.next = temp;
+	temp.previous = current;
 	this.size -= 1;
 	return val;
     }
@@ -147,12 +169,10 @@ public class MyLinkedList{
 	System.out.println(x);
 	x.add(2,9);
        	System.out.println(x);
-	x.remove(2);
-       	System.out.println(x);
-	x.remove(6);
+	x.remove(0);
+	System.out.println(x);
+       	System.out.println(x.toStringBackWards());
 
     }
 }
-
-//exceptions
 
