@@ -156,25 +156,35 @@ public class MyLinkedList{
 	}
 
 	if(index == this.size() - 1){
+	    int temp = tail.value;
 	    tail = tail.previous;
+	    tail.next = null;
+	    return temp;
 	}
-
-	LNode current = start;
-	LNode temp = start;
-	int val = 0;
+	else{
+	    if(index != 0){
+		LNode current = start;
+		LNode temp = start;
+		int val = 0;
 	
-	for(int i = 0; i < index-1; i++){
-	    temp = current.next.next.next;
-	    val = temp.value;
-	    current = current.next;
+		for(int i = 0; i < index-1; i++){
+		    temp = current.next.next.next;
+		    val = temp.value;
+		    current = current.next;
+		}
+		current.next = temp;
+		temp.previous = current;
+		this.size -= 1;
+		return val;
+	    }
+	    else{
+		int temp = start.value;
+		start = start.next;
+		start.previous = null;
+		return temp;
+	    }
 	}
-	current.next = temp;
-	temp.previous = current;
-	this.size -= 1;
-	return val;
     }
-
-    //public void remove(LNode target)
 
     public int indexOf(int value){
 	LNode current = start;
@@ -192,7 +202,7 @@ public class MyLinkedList{
 
     public static void main(String[] args){
 	MyLinkedList x = new MyLinkedList();
-	x.add(0,5);
+	x.add(5);
 	x.add(6);
 	x.add(5);
 	x.add(4);
@@ -200,9 +210,14 @@ public class MyLinkedList{
 	System.out.println(x);
 	x.add(2,9);
        	System.out.println(x);
-	x.remove(0);
+	x.remove(5);
 	System.out.println(x);
        	System.out.println(x.toStringBackWards());
+	//	x.add(0,0);
+	//	x.add(5,0);
+       	System.out.println(x);
+
+
 
     }
 }
