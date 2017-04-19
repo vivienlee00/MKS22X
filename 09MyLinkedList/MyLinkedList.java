@@ -283,35 +283,8 @@ public class MyLinkedList implements Iterable<Integer>{
        	return new linkedListIterator(this);
     }
 
-    public static void main(String[] args){
-	MyLinkedList x = new MyLinkedList();
-	x.add(5);
-	x.add(6);
-	x.add(5);
-	x.add(4);
-	x.add(3);
-	System.out.println(x);
-	x.add(2,9);
-
-       	System.out.println(x);
-	System.out.println(x.toStringBackWards());
-
-	x.remove(5);
-	System.out.println(x);
-	System.out.println(x.size());
-	System.out.println(x.indexOf(10));
-	System.out.println(x.indexOf(4));
-       	System.out.println(x.toStringBackWards());
-	x.add(0,0);
-	System.out.println(x);
-	x.add(6,0);
-       	System.out.println(x);
 
 
-	for(Integer s : x){
-	    System.out.print(s+" ");
-	}
-
-    }
 }
+
 
