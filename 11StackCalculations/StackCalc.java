@@ -1,7 +1,7 @@
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class postfix{
+public class StackCalc{
 
 
     public static double eval(String s){
@@ -61,12 +61,7 @@ public class postfix{
 	    return A % B;
 	} 
     }
-
-    public static void main (String[]args) {
-	//	System.out.println(eval("2 3 + 5 * 5 % 2 2 - +"));
-	System.out.println(eval("10 2.0 +"));
-    }
-    
+ 
     
 }
 	    
