@@ -42,8 +42,8 @@ public class StackCalc{
     }
 
     private static double apply(String a, String b, String op){
-	Double A = Double.parseDouble(a);
-	Double B = Double.parseDouble(b);
+	Double B = Double.parseDouble(a);
+	Double A = Double.parseDouble(b);
 	
 	if(op.equals("+")){
 	    return A + B;
