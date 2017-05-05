@@ -96,12 +96,15 @@ public class MyHeap{
 	MyHeap x = new MyHeap();
 	x.add("A");
 	System.out.println(x.toString());
-	x.add("C");
+	x.add("D");
 	System.out.println(x.toString());
 	x.add("B");
 	System.out.println(x.toString());
-	x.remove();
+	x.add("C");
 	System.out.println(x.toString());
+	x.add("A");
+	System.out.println(x.toString());
+
 
 
     }
