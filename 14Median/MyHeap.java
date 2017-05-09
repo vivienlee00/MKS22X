@@ -93,18 +93,17 @@ public class MyHeap{
     }
 
     public static void main(String[] args){
-	MyHeap x = new MyHeap();
-	x.add(1);
+	MyHeap x = new MyHeap(false);
+	x.add(5);
+	x.add(6);
+	x.add(7);
+	x.add(8);
+	x.add(9);
+	x.add(8);
+	x.add(10);
 	System.out.println(x.toString());
-	x.add(4);
+	x.remove();
 	System.out.println(x.toString());
-	x.add(2);
-	System.out.println(x.toString());
-	x.add(3);
-	System.out.println(x.toString());
-	x.add(1);
-	System.out.println(x.toString());
-
 
 
     }
