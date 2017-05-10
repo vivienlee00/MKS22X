@@ -18,26 +18,26 @@ public class MyHeap{
 	isMax = bool;
     }
 
-    public void add(int n){
-	data.add(n);
+    public void add(int str){
+	data.add(str);
 	pushUp();
     }
 
     public Integer remove(){
-	int temp = data.get(1);
+	Integer temp = data.get(1);
 	data.set(1, data.get(data.size() - 1));
 	data.remove(data.size() - 1);
 	pushDown();
 	return temp;
     }
 
-    public Integer peek(){
+    public int peek(){
 	return data.get(1);
     }
 
     private void pushUp(){
 	Integer temp = data.get(data.size() - 1);
-	int index = data.size() - 1;
+	Integer index = data.size() - 1;
 
 	if(isMax){
 	    while((index/2 > 0) &&
@@ -57,22 +57,52 @@ public class MyHeap{
     }
 
     private void pushDown(){
+
+	if(data.size() == 1){
+	    return;
+	}
+	
 	Integer temp = data.get(1);
-	int index = 1;
+	Integer index = 1;
 
 	if(isMax){
 	    while((index*2 < data.size()) &&
-		  (temp.compareTo(data.get(index*2)) < 1)){
-		swap(data, index, index*2);
-		index = index*2;
+		  ((temp.compareTo(data.get(index*2)) < 1) ||
+		   (temp.compareTo(data.get(index*2)+1) < 1)) 
+		   ){
+		if((temp.compareTo(data.get(index*2)) < 1)&&
+		   ((index*2) + 1 >= data.size() ||
+		    (data.get(index*2).compareTo(data.get((index*2)+1)) > -1)
+		    )){
+		    swap(data, index, index*2);
+		    index = index*2;
+		}
+		else{
+		    swap(data, index, (index*2)+1);
+		    index = (index*2)+1;
+		}
 	    }
 	}
 	else{
+
 	    while((index*2 < data.size()) &&
-		  (temp.compareTo(data.get(index*2)) > -1)){
-		swap(data, index, index*2);
-		index = index*2;
+		  ((temp.compareTo(data.get(index*2)) > -1) ||
+		   (temp.compareTo(data.get(index*2)+1) > -1)) 
+		  ){
+		
+		if((temp.compareTo(data.get(index*2)) > -1)&&
+		   ((index*2) + 1 >= data.size() ||
+		    (data.get(index*2).compareTo(data.get((index*2)+1)) < 1)
+		     )){
+		    swap(data, index, index*2);
+		    index = index*2;
+		}
+		else{
+		    swap(data, index, (index*2)+1);
+		    index = (index*2)+1;
+		}
 	    }
+	    
 	}
     }
 
@@ -92,20 +122,4 @@ public class MyHeap{
 	return temp;
     }
 
-    public static void main(String[] args){
-	MyHeap x = new MyHeap(false);
-	x.add(5);
-	x.add(6);
-	x.add(7);
-	x.add(8);
-	x.add(9);
-	x.add(8);
-	x.add(10);
-	System.out.println(x.toString());
-	x.remove();
-	System.out.println(x.toString());
-
-
-    }
-    
 }

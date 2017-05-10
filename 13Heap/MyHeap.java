@@ -57,22 +57,52 @@ public class MyHeap{
     }
 
     private void pushDown(){
+
+	if(data.size() == 1){
+	    return;
+	}
+	
 	String temp = data.get(1);
 	int index = 1;
 
 	if(isMax){
 	    while((index*2 < data.size()) &&
-		  (temp.compareTo(data.get(index*2)) < 1)){
-		swap(data, index, index*2);
-		index = index*2;
+		  ((temp.compareTo(data.get(index*2)) < 1) ||
+		   (temp.compareTo(data.get(index*2)+1) < 1)) 
+		   ){
+		if((temp.compareTo(data.get(index*2)) < 1)&&
+		   ((index*2) + 1 >= data.size() ||
+		    (data.get(index*2).compareTo(data.get((index*2)+1)) > -1)
+		    )){
+		    swap(data, index, index*2);
+		    index = index*2;
+		}
+		else{
+		    swap(data, index, (index*2)+1);
+		    index = (index*2)+1;
+		}
 	    }
 	}
 	else{
+
 	    while((index*2 < data.size()) &&
-		  (temp.compareTo(data.get(index*2)) > -1)){
-		swap(data, index, index*2);
-		index = index*2;
+		  ((temp.compareTo(data.get(index*2)) > -1) ||
+		   (temp.compareTo(data.get(index*2)+1) > -1)) 
+		  ){
+		
+		if((temp.compareTo(data.get(index*2)) > -1)&&
+		   ((index*2) + 1 >= data.size() ||
+		    (data.get(index*2).compareTo(data.get((index*2)+1)) < 1)
+		     )){
+		    swap(data, index, index*2);
+		    index = index*2;
+		}
+		else{
+		    swap(data, index, (index*2)+1);
+		    index = (index*2)+1;
+		}
 	    }
+	    
 	}
     }
 
@@ -92,21 +122,4 @@ public class MyHeap{
 	return temp;
     }
 
-    public static void main(String[] args){
-	MyHeap x = new MyHeap();
-	x.add("A");
-	System.out.println(x.toString());
-	x.add("D");
-	System.out.println(x.toString());
-	x.add("B");
-	System.out.println(x.toString());
-	x.add("C");
-	System.out.println(x.toString());
-	x.add("A");
-	System.out.println(x.toString());
-
-
-
-    }
-    
 }
