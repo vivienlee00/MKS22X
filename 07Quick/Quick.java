@@ -4,7 +4,10 @@ import java.util.*;
 public class Quick{
 
 
-    public static void quickSort(int[] data){
+    public static void quicksort(int[] data){
+	if(data.length == 0){
+	    return;
+	}
 	quickSortHelp(data, 0, data.length-1);
     }
 
