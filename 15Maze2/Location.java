@@ -1,4 +1,4 @@
-public class Location{
+public class Location implements Comparable<Location>{
     private int row;
     private int col;
     private Location previous;
@@ -6,15 +6,6 @@ public class Location{
     private int distanceToGoal;
     private boolean Astar;
 
-    public Location(int r, int c, Location prev, 
-		    int disStart, int disGoal){
-	row = r;
-	col = c;
-	previous = prev;
-	distanceToStart = disStart;
-	distanceToGoal = disStart;
-	Astar = false;
-    }
 
     public Location(int r, int c, Location prev,
 		    int disStart, int disGoal, boolean aStar){
@@ -25,5 +16,45 @@ public class Location{
 	distanceToGoal = disStart;
 	Astar = aStar;
     }
+
+    public int compareTo(Location other){
+
+	if(Astar){
+	    int dist = distanceToGoal + distanceToStart;
+	    int dist2 = other.getdistToGoal() + other.getdistToStart();
+	    if(dist < dist2){
+		return -1;
+	    }
+	    if(dist > dist2){
+		return 1;
+	    }
+	    else{
+		return 0;
+	    }
+	}
+	else{
+	    int dist = distanceToGoal;
+	    int dist2 = other.getdistToGoal();
+	    if(dist < dist2){
+		return -1;
+	    }
+	    if(dist > dist2){
+		return 1;
+	    }
+	    else{
+		return 0;
+	    }
+	}
+
+    }
+
+    public int getdistToGoal(){
+	return distanceToGoal;
+    }
+
+    public int getdistToStart(){
+	return distanceToStart;
+    }
+
 
 }
