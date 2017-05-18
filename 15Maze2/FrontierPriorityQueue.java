@@ -51,8 +51,8 @@ public class FrontierPriorityQueue implements Frontier{
 
 	while((index*2 < data.size()) &&
 	      ((temp.compareTo(data.get(index*2)) > -1) ||
-	       (temp.compareTo(data.get(index*2)+1)) > -1)
-	      ){
+	       (temp.compareTo(data.get((index*2)+1)) > -1)
+	       )){
 		
 	    if((temp.compareTo(data.get(index*2)) > -1)&&
 	       ((index*2) + 1 >= data.size() ||
