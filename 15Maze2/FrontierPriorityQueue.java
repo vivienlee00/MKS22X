@@ -52,10 +52,14 @@ public class FrontierPriorityQueue implements Frontier{
 	Location temp = data.get(1);
 	int index = 1;
 
-	while((index*2 < data.size()) &&
-	      ((temp.compareTo(data.get(index*2)) > -1) ||
-	       (temp.compareTo(data.get((index*2)+1)) > -1)
-	       )){
+	while(
+	      (((index*2) + 1 < data.size()) &&
+	       ((temp.compareTo(data.get(index*2)) > -1) ||
+		(temp.compareTo(data.get((index*2)+1)) > -1)))
+	      ||
+	      ((index*2 < data.size()) &&
+	       ((temp.compareTo(data.get(index*2)) > -1)))
+	      ){
 		
 	    if((temp.compareTo(data.get(index*2)) > -1)&&
 	       ((index*2) + 1 >= data.size() ||
@@ -82,15 +86,10 @@ public class FrontierPriorityQueue implements Frontier{
     public String toString(){
 	String temp = "";
 
-	for(Location x : data){
-	    temp += x.getdistToGoal() + " ";
+	for(int i = 1; i < data.size(); i++){
+	    temp += data.get(i).getRow() + " ";
 	}
-	
-	temp += '\n';
-
-	for(Location x : data){
-	    temp += (x.getdistToGoal() + x.getdistToStart()) + " ";
-	}
+       
 
 	return temp;
     }

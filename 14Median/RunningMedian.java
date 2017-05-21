@@ -77,15 +77,4 @@ public class RunningMedian{
     }
 
 
-    public static void main(String[] args){
-	RunningMedian x = new RunningMedian();
-	x.add(15);
-	x.add(25);
-	x.add(35);
-	x.add(45);
-	x.add(60);
-	x.add(0);
-	System.out.println(x.getMedian());
-    }
-
 }

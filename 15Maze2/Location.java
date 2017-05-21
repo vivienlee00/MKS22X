@@ -13,7 +13,7 @@ public class Location implements Comparable<Location>{
 	col = c;
 	previous = prev;
 	distanceToStart = disStart;
-	distanceToGoal = disStart;
+	distanceToGoal = disGoal;
 	Astar = aStar;
     }
 

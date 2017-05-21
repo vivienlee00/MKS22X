@@ -49,6 +49,7 @@ public class MazeSolver{
 	while (f.getSize() > 0){
 	    Location current = f.next();
 	    if(distCalc(current, board.getEnd()) == 0){
+		board.set(current.getRow(), current.getCol(), 'E');
 		System.out.println(this.toString());
 		return;
 	    }
@@ -129,9 +130,14 @@ public class MazeSolver{
 
     public String toString(){
 	if (animated) {
-	    return board.toString(20);
+	    return board.toString(100);
 	}
 	return board.toString();
+    }
+
+    public static void main(String[] args){
+	MazeSolver x = new MazeSolver("data2.txt", true);
+	x.solve(0);
     }
 			    
 
