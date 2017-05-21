@@ -17,6 +17,22 @@ public class Location implements Comparable<Location>{
 	Astar = aStar;
     }
 
+    public int getRow(){
+	return row;
+    }
+
+    public int getCol(){
+	return col;
+    }
+
+    public Location getPrev(){
+	return previous;
+    }
+
+    public boolean isAstar(){
+	return Astar;
+    }
+
     public int compareTo(Location other){
 
 	if(Astar){

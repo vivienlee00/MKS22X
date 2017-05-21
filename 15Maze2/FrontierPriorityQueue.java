@@ -10,6 +10,9 @@ public class FrontierPriorityQueue implements Frontier{
 	data.add(0,null);
     }
 
+    public int getSize(){
+	return data.size();
+    }
 
     public void add(Location x){
 	data.add(x);
