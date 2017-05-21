@@ -133,12 +133,6 @@ public class MazeSolver{
 	    return board.toString(100);
 	}
 	return board.toString();
-    }
-
-    public static void main(String[] args){
-	MazeSolver x = new MazeSolver("data2.txt", true);
-	x.solve(0);
-    }
-			    
+    }  		    
 
 }
