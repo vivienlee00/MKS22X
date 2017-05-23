@@ -50,6 +50,13 @@ public class MazeSolver{
 	    Location current = f.next();
 	    if(distCalc(current, board.getEnd()) == 0){
 		board.set(current.getRow(), current.getCol(), 'E');
+
+		while(current.getPrev() != null){
+		    current = current.getPrev();
+		    board.set(current.getRow(), current.getCol(), '@');
+		}
+
+		board.set(current.getRow(), current.getCol(), 'S');
 		System.out.println(this.toString());
 		return;
 	    }
@@ -133,6 +140,11 @@ public class MazeSolver{
 	    return board.toString(100);
 	}
 	return board.toString();
-    }  		    
+    }
+
+    public static void main (String[]args) {
+	MazeSolver a = new MazeSolver("data3.txt", true);
+	a.solve(2);
+    }
 
 }
