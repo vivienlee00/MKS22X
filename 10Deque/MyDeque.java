@@ -28,7 +28,7 @@ public class MyDeque{
 	return str;
     }
     
-    private void addFirst(String s){
+    public void addFirst(String s){
 
 	if(s == null){
 	    throw new NullPointerException();
@@ -88,7 +88,7 @@ public class MyDeque{
 	System.out.println(toString());
     }
     
-    private void addLast(String s){
+    public void addLast(String s){
 
 	if(s == null){
 	    throw new NullPointerException();
@@ -123,8 +123,8 @@ public class MyDeque{
 
 
     
-    private String removeFirst(){
-	if(size == 0){
+    public String removeFirst(){
+	if(size == 0 || amount == 0){
 	    throw new NoSuchElementException();
 	}
 
@@ -148,8 +148,8 @@ public class MyDeque{
 	return x;
     }
     
-    private String removeLast(){
-	if(size == 0){
+    public String removeLast(){
+	if(size == 0 || amount == 0){
 	    throw new NoSuchElementException();
 	}
 
@@ -170,7 +170,6 @@ public class MyDeque{
 	    front = 0;
 	    back = 0;
 	}
-
 	return x;
     }
 
