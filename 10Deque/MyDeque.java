@@ -59,7 +59,6 @@ public class MyDeque{
 	    doubleCap();
 	    addFirst(s);
 	}
-	System.out.println(toString());
 
     }
 
@@ -85,7 +84,6 @@ public class MyDeque{
 	size = newSize;
 	front = 0;
 	back = amount-1;
-	System.out.println(toString());
     }
     
     public void addLast(String s){
@@ -118,7 +116,6 @@ public class MyDeque{
 	    doubleCap();
 	    addLast(s);
 	}
-	System.out.println(toString());
     }
 
 
